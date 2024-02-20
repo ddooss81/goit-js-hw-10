@@ -23,3 +23,10 @@
   -moz-osx-font-smoothing: grayscale;
   -webkit-text-size-adjust: 100%;
 }
+
+body a {
+  font-size: 32px;
+  display: flex;
+  color: rgb(85, 26, 139);
+  text-decoration: underline;
+}
