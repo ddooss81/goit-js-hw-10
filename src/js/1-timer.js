@@ -1,9 +1,10 @@
-'use strict';
+// 'use strict';
 
 import flatpickr from 'flatpickr';
 import 'flatpickr/dist/flatpickr.min.css';
 import iziToast from 'izitoast';
 import 'izitoast/dist/css/iziToast.min.css';
+import superIcon from '../img/bi_x-octagon.svg';
 
 const dateTimePickerElement = document.querySelector('#datetime-picker');
 const startButton = document.querySelector('[data-start]');
@@ -27,12 +28,13 @@ function handleDatePickerClose(chosenDates) {
       
     iziToast.warning({
           backgroundColor: '#EF4040',
-          icon: '',
+          iconUrl: superIcon,
+          iconColor: '#FFFFFF',
           titleColor: '#FFFFFF',
           progressBarColor: '#B51B1B',
           position: 'topRight',
           timeout: 3000,
-          closeCaolor: '#FFFFFF',
+          closeColor: '#FFFFFF',
           theme: 'dark',
         
           title: 'Please choose a date in the future',
