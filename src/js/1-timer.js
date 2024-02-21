@@ -27,7 +27,7 @@ function handleDatePickerClose(chosenDates) {
       
     iziToast.warning({
           backgroundColor: '#EF4040',
-          iconUrl: './img/bi_x-octagon.svg',
+          iconUrl: '../img/bi_x-octagon.svg',
           titleColor: '#FFFFFF',
           progressBarColor: '#B51B1B',
           position: 'topRight',
