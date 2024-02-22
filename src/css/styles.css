@@ -29,4 +29,5 @@ body a {
   display: flex;
   color: rgb(85, 26, 139);
   text-decoration: underline;
+  line-height: 1.5;
 }

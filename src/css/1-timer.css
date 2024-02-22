@@ -36,16 +36,6 @@ button[data-start]:active {
   background-color: #000;
 }
 
-.field {
-  width: 55px;
-  height: 72px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding: 0;
-  margin: 0;
-}
-
 .timer {
   padding: 0;
   margin: 0;
