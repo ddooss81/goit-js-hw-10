@@ -2,12 +2,23 @@
 
 import iziToast from 'izitoast';
 import 'izitoast/dist/css/iziToast.min.css';
+import superIconOk from '../img/bi_check2-circle.svg';
+
+
 
 document.querySelector('.form').addEventListener('submit', (event) => {
   event.preventDefault();
 
   const delayInMilliseconds = parseInt(event.target.elements.delay.value);
   const promiseState = event.target.elements.state.value;
+
+  if (delayInMilliseconds <= 1) {
+    iziToast.error({
+      title: 'Error',
+      message: 'Please enter time in milliseconds',
+    });
+    delayInMilliseconds = "";
+  };
 
   const promise = new Promise((resolve, reject) => {
     setTimeout(() => {
@@ -22,8 +33,17 @@ document.querySelector('.form').addEventListener('submit', (event) => {
   promise
     .then((delay) => {
       iziToast.success({
-        title: 'Fulfilled Promise',
-        message: `✅ Promise fulfilled in ${delay}ms`,
+          backgroundColor: '#59A10D',
+          iconUrl: superIconOk,
+          iconColor: '#FFFFFF',
+          titleColor: '#FFFFFF',
+          progressBarColor: '#326101',
+          position: 'topRight',
+          timeout: 3000,
+          closeColor: '#FFFFFF',
+          theme: 'dark',
+          title: 'OK',
+          message: `Fulfilled promise in ${delay}ms`,
       });
     })
     .catch((delay) => {
