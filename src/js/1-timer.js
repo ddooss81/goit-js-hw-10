@@ -76,9 +76,9 @@ function startCountdown() {
     const currentTime = new Date();
     const timeRemaining = selectedDate - currentTime;
 
-    if (timeRemaining <= 0) {
+    if (timeRemaining < 0) {
       clearInterval(intervalId);
-      document.querySelector('.timer').textContent = '00:00:00:00';
+      dateTimePickerElement.disabled = false;
       return;
     }
 
@@ -91,10 +91,12 @@ function startCountdown() {
   }, 1000);
 }
 
-startButton.addEventListener('click', () => {
+function startCountdownHandler() {
   dateTimePickerElement.disabled = true;
-    startButton.disabled = true;
-    startButton.style.backgroundColor = "#CFCFCF";
-    startButton.style.color = "#989898";
+  startButton.disabled = true;
+  startButton.style.backgroundColor = "#CFCFCF";
+  startButton.style.color = "#989898";
   startCountdown();
-});
+}
+
+startButton.addEventListener('click', startCountdownHandler);

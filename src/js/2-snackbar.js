@@ -4,46 +4,47 @@ import iziToast from 'izitoast';
 import 'izitoast/dist/css/iziToast.min.css';
 import superIconOk from '../img/bi_check2-circle.svg';
 
+const btnTarget = document.querySelector('.form button');
 
-
-document.querySelector('.form').addEventListener('submit', (event) => {
+btnTarget.addEventListener('click', (event) => {
   event.preventDefault();
 
-  const delayInMilliseconds = parseInt(event.target.elements.delay.value);
-  const promiseState = event.target.elements.state.value;
-
-  if (delayInMilliseconds <= 1) {
+  const inputValue = document.querySelector('.form input[name="delay"]').value;
+  const fieldsetValue = document.querySelector('.form fieldset input[name="state"]:checked').value;
+  console.log(inputValue);
+  console.log(fieldsetValue);
+  if (inputValue <= 1) {
     iziToast.error({
       title: 'Error',
       message: 'Please enter time in milliseconds',
     });
-    delayInMilliseconds = "";
-  };
+    inputValue = "";
+  }
 
   const promise = new Promise((resolve, reject) => {
     setTimeout(() => {
-      if (promiseState === 'fulfilled') {
-        resolve(delayInMilliseconds);
+      if (fieldsetValue === 'fulfilled') {
+        resolve(inputValue);
       } else {
-        reject(delayInMilliseconds);
+        reject(inputValue);
       }
-    }, delayInMilliseconds);
+    }, inputValue);
   });
 
   promise
     .then((delay) => {
       iziToast.success({
-          backgroundColor: '#59A10D',
-          iconUrl: superIconOk,
-          iconColor: '#FFFFFF',
-          titleColor: '#FFFFFF',
-          progressBarColor: '#326101',
-          position: 'topRight',
-          timeout: 3000,
-          closeColor: '#FFFFFF',
-          theme: 'dark',
-          title: 'OK',
-          message: `Fulfilled promise in ${delay}ms`,
+        backgroundColor: '#59A10D',
+        iconUrl: superIconOk,
+        iconColor: '#FFFFFF',
+        titleColor: '#FFFFFF',
+        progressBarColor: '#326101',
+        position: 'topRight',
+        timeout: 3000,
+        closeColor: '#FFFFFF',
+        theme: 'dark',
+        title: 'OK',
+        message: `Fulfilled promise in ${delay}ms`,
       });
     })
     .catch((delay) => {
@@ -54,16 +55,13 @@ document.querySelector('.form').addEventListener('submit', (event) => {
     });
 });
 
-const fieldsetElement = document.querySelector('.form fieldset');
+function changeFieldsetBorderColor(inputElement) {
+  fieldsetElement.style.borderColor = inputElement.checked ? '#808080' : '#d3d3d3';
+};
 
+const fieldsetElement = document.querySelector('.form fieldset');
 const inputElements = fieldsetElement.querySelectorAll('input');
 
 for (const inputElement of inputElements) {
-  inputElement.addEventListener('change', () => {
-    if (inputElement.checked) {
-      fieldsetElement.style.borderColor = '#808080';
-    } else {
-      fieldsetElement.style.borderColor = '#808080';
-    }
-  });
-}
+  inputElement.addEventListener('change', changeFieldsetBorderColor);
+};
